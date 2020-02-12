@@ -1,0 +1,11 @@
+/Users/matthewdick/cohort-17/DeckShuffle/DeckShuffle/bin/Debug/netcoreapp3.1/DeckShuffle
+/Users/matthewdick/cohort-17/DeckShuffle/DeckShuffle/bin/Debug/netcoreapp3.1/DeckShuffle.deps.json
+/Users/matthewdick/cohort-17/DeckShuffle/DeckShuffle/bin/Debug/netcoreapp3.1/DeckShuffle.runtimeconfig.json
+/Users/matthewdick/cohort-17/DeckShuffle/DeckShuffle/bin/Debug/netcoreapp3.1/DeckShuffle.runtimeconfig.dev.json
+/Users/matthewdick/cohort-17/DeckShuffle/DeckShuffle/bin/Debug/netcoreapp3.1/DeckShuffle.dll
+/Users/matthewdick/cohort-17/DeckShuffle/DeckShuffle/bin/Debug/netcoreapp3.1/DeckShuffle.pdb
+/Users/matthewdick/cohort-17/DeckShuffle/DeckShuffle/obj/Debug/netcoreapp3.1/DeckShuffle.csprojAssemblyReference.cache
+/Users/matthewdick/cohort-17/DeckShuffle/DeckShuffle/obj/Debug/netcoreapp3.1/DeckShuffle.AssemblyInfoInputs.cache
+/Users/matthewdick/cohort-17/DeckShuffle/DeckShuffle/obj/Debug/netcoreapp3.1/DeckShuffle.AssemblyInfo.cs
+/Users/matthewdick/cohort-17/DeckShuffle/DeckShuffle/obj/Debug/netcoreapp3.1/DeckShuffle.dll
+/Users/matthewdick/cohort-17/DeckShuffle/DeckShuffle/obj/Debug/netcoreapp3.1/DeckShuffle.pdb
