@@ -14,6 +14,51 @@ namespace DeckShuffle
         int x = rnd.Next(i);
         return x;
       }
+      static int getCardNumber(string incoming)
+      {
+        switch (incoming)
+        {
+          case "Ace":
+            return 14;
+
+          case "Two":
+            return 2;
+
+          case "Three":
+            return 3;
+
+          case "Four":
+            return 4;
+
+          case "Five":
+            return 5;
+
+          case "Six":
+            return 6;
+
+          case "Seven":
+            return 7;
+
+          case "Eight":
+            return 8;
+
+          case "Nine":
+            return 9;
+
+          case "Ten":
+            return 10;
+
+          case "Jack":
+            return 11;
+
+          case "Queen":
+            return 12;
+
+          case "King":
+            return 13;
+        }
+        return 0;
+      }
 
       var deckOfCards = new List<string>();
 
@@ -37,13 +82,14 @@ namespace DeckShuffle
 
       var playersFinalCards = new List<string>();
 
-      Console.WriteLine("Top Deck of cards " + deckOfCards.Count);
+      //Console.WriteLine("Top Deck of cards " + deckOfCards.Count);
 
       var numberLeft = deckOfCards.Count;
 
       while (numberLeft > 0)
       {
         int randomCard = randomGenerator(numberLeft);
+
 
         var movingCard = deckOfCards[randomCard];
         //Console.WriteLine("Moving Card = " + movingCard);
@@ -140,43 +186,190 @@ namespace DeckShuffle
           running = false;
         }
       }
+      Console.WriteLine($"Player 1 has {player1.Count} cards.  Player 2 has {player2.Count} cards.");
+      Console.WriteLine("Do you want to play  game? (Y) or (N)");
+      var input3 = Console.ReadLine();
+
+      if (input3.ToLower() == "y")
+      {
+        // Play game info goes here
+        // var start = myString.IndexOf("%");
+        // var spaceIndex = myString.IndexOf(" ", start)
+        var gameOver = false;
+        var inATie = false;
+        int numberOfCards = 1;
+
+        while (gameOver == false)
+        {
+
+          if (inATie == false)
+          {
+
+            //Console.WriteLine(player1[0]);
+            var p1SpaceIndex = player1[0].IndexOf(" ");
+            //Console.WriteLine(spaceIndex);
+            string p1CardName = player1[0].Substring(0, p1SpaceIndex);
+            //Console.WriteLine(cardNumber);
+            var p1CardNumber = getCardNumber(p1CardName);
+            //Console.WriteLine($"card number function: {cardNumber}");
+
+            //Console.WriteLine(player2[0]);
+            var p2SpaceIndex = player2[0].IndexOf(" ");
+            //Console.WriteLine(p2SpaceIndex);
+            string p2CardName = player2[0].Substring(0, p2SpaceIndex);
+            //Console.WriteLine(cardNumber);
+            var p2CardNumber = getCardNumber(p2CardName);
+            //Console.WriteLine($"card number function: {p2CardNumber}");
+
+            var whoWon = "";
+
+            if (p1CardNumber > p2CardNumber)
+            {
+              whoWon = "Player 1 won this hand.";
+              player1.Add(player2[0]);
+              player2.RemoveAt(0);
+              var cardToBack = player1[0];
+              player1.RemoveAt(0);
+              player1.Add(cardToBack);
+              inATie = false;
+              Console.WriteLine($"Player one has a {p1CardName} and Player 2 has a {p2CardName}. {whoWon}");
+              Console.WriteLine($"Player 1 has {player1.Count} cards.  Player 2 has {player2.Count} cards.");
+            }
+            else if (p1CardNumber < p2CardNumber)
+            {
+              whoWon = "Player 2 won this hand.";
+              player2.Add(player1[0]);
+              player1.RemoveAt(0);
+              var cardToBack = player2[0];
+              player2.RemoveAt(0);
+              player2.Add(cardToBack);
+              inATie = false;
+              Console.WriteLine($"Player one has a {p1CardName} and Player 2 has a {p2CardName}. {whoWon}");
+              Console.WriteLine($"Player 1 has {player1.Count} cards.  Player 2 has {player2.Count} cards.");
+            }
+            else if (p1CardNumber == p2CardNumber)
+            {
+              whoWon = "Tie.";
+              inATie = true;
+              Console.WriteLine($"Player one has a {p1CardName} and Player 2 has a {p2CardName}. {whoWon}");
+            }
+
+            if (player1.Count == 0 | player2.Count == 0)
+            {
+              gameOver = true;
+            }
+
+          }
+          else if (inATie == true)
+          {
+            var canDoTie = true;
+            if (player1.Count < 3)
+            {
+              canDoTie = false;
+              gameOver = true;
+              Console.WriteLine("Player 1 does not have enough cards for war.  He looses.");
+            }
+
+            if (player2.Count < 3)
+            {
+              canDoTie = false;
+              gameOver = true;
+              Console.WriteLine("Player 2 does not have enough cards for war.  He looses.");
+            }
+
+            if (canDoTie == true)
+            {
 
 
+              var whoWon2 = "";
+              //Console.WriteLine($"numberOfCards = {numberOfCards}");
+              numberOfCards = numberOfCards + 2;
+              //Console.WriteLine($"numberOfCards = {numberOfCards}");
+              Console.WriteLine("Player 1 puts a card face down.");
+              Console.WriteLine("Player 2 puts a card face down.");
 
+              //Console.WriteLine(player1[0]);
+              var p1SpaceIndex = player1[numberOfCards].IndexOf(" ");
+              //Console.WriteLine(spaceIndex);
+              string p1CardName = player1[numberOfCards].Substring(0, p1SpaceIndex);
+              //Console.WriteLine(cardNumber);
+              var p1CardNumber = getCardNumber(p1CardName);
+              //Console.WriteLine($"card number function: {cardNumber}");
 
+              //Console.WriteLine(player2[0]);
+              var p2SpaceIndex = player2[numberOfCards].IndexOf(" ");
+              //Console.WriteLine(p2SpaceIndex);
+              string p2CardName = player2[numberOfCards].Substring(0, p2SpaceIndex);
+              //Console.WriteLine(cardNumber);
+              var p2CardNumber = getCardNumber(p2CardName);
+              //Console.WriteLine($"card number function: {p2CardNumber}");
 
+              if (p1CardNumber > p2CardNumber)
+              {
+                whoWon2 = "Player 1 won this hand.";
 
+                var m = numberOfCards;
+                //Console.WriteLine($"Going in M={m}");
+                while (m > 0)
+                {
+                  player1.Add(player2[0]);
+                  player2.RemoveAt(0);
+                  var cardToBack = player1[0];
+                  player1.RemoveAt(0);
+                  player1.Add(cardToBack);
+                  m--;
+                  //Console.WriteLine($"After decrement M={m}");
+                }
+                inATie = false;
+                numberOfCards = 1;
+              }
 
+              else if (p1CardNumber < p2CardNumber)
+              {
+                whoWon2 = "Player 2 won this hand.";
 
+                var m = numberOfCards;
+                while (m > 0)
+                {
+                  player2.Add(player1[0]);
+                  player1.RemoveAt(0);
+                  var cardToBack = player2[0];
+                  player2.RemoveAt(0);
+                  player2.Add(cardToBack);
+                  m--;
+                }
+                inATie = false;
+                numberOfCards = 1;
+              }
+              else if (p1CardNumber == p2CardNumber)
+              {
+                whoWon2 = "Tie.";
+                inATie = true;
+              }
 
-      // ----------------
+              Console.WriteLine($"Player one has a {p1CardName} and Player 2 has a {p2CardName}. {whoWon2}");
+              Console.WriteLine($"Player 1 has {player1.Count} cards.  Player 2 has {player2.Count} cards.");
+            }
+          }
+        }
 
-      // int showDeck = 0;
-      // var nextCard = playersFinalCards[showDeck];
-      // Console.WriteLine($"Your First card is: {nextCard}");
-
-      // var isRunning = true;
-
-      // while (isRunning)
-      // {
-
-      //   Console.WriteLine("Do you want to see your next card? (Y) or (N)");
-      //   var input = Console.ReadLine();
-
-      //   if (input.ToLower() == "y")
-      //   {
-      //     showDeck++;
-      //     nextCard = playersFinalCards[showDeck];
-      //     Console.WriteLine($"Your next card is: {nextCard}");
-      //   }
-
-      //   if (input.ToLower() == "n")
-      //   {
-      //     isRunning = false;
-      //     Console.WriteLine("Thanks for playing.");
-      //   }
-
+      }
+      else if (input3.ToLower() == "n")
+      {
+        Console.WriteLine("You are no fun !!!");
+      }
     }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
 
